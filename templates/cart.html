@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block Title %}
+Cart
+{% endblock Title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username=={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username=={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row" style="padding-top:15px;">
+    <div class="col">
+      <img class="d-block w-100 " src="/static/images/shopping-cart-1276260__340.jpg" style="height:400px;">
+
+    </div>
+
+    <div class="col">
+      <img class="d-block w-100 " src="/static/images/shopping-cart-1026501__340.jpg" style="height:400px;">
+
+    </div>
+  </div>
+
+
+  <i class="fa fa-shopping-cart" style='font-size:100px' aria-hidden="true"></i>
+
+</div>
+<div class="container">
+  <div class="row" style="padding-top:15px;">
+
+
+
+
+    {% for icecream in cart_items %}
+
+
+    <div class="col-3">
+      <img class="card-img-top" src="{{icecream.icecream_image.url}}" style="height : 50%;width : 60%"
+        alt="Card image cap">
+      <p><a href="/customer?item_id={{icecream.icecream_name}}">{{icecream.icecream_name}}</a></p>
+      <p>Price {{icecream.icecream_price}} $</p>
+
+      <a type="submit"
+        href="/customer?icecream_id={{icecream.icecream_id}}&item={{icecream.icecream_name}}&username={{username}}"
+        class="btn btn-secondary"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Order Now</a>
+      <a type="submit" href="/removecart?item_id={{icecream.cart_id}}&username={{username}}" class="btn btn-warning"><i
+          class="fa fa-shopping-cart" aria-hidden="true"></i>Remove</a>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock body %}
+{% block footer %}
+<p><a href="/?username={{username}}">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/services?username={{username}}">Services</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/about?username={{username}}">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/contact?username={{username}}">Contact Us</a>&nbsp;&nbsp;|
+</p>
+
+
+{% endblock footer %}

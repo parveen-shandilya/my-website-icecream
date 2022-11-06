@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="/mywebcss">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
+
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> {% block title %}
+    {% endblock title %} | Parveen Icecream</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+    <a class="navbar-brand" href="/admin">Parveen Icecream</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          {% block homeblock %}
+
+          {% endblock homeblock %}
+
+        </li>
+        <li class="nav-item">
+          {% block aboutblock %}
+
+          {% endblock aboutblock %}
+
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/services" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% block serviceblock %}
+
+            {% endblock serviceblock %}
+
+
+
+        </li>
+        <li class="nav-item">
+          {% block contactblock %}
+
+          {% endblock contactblock %}
+
+        </li>
+
+        {% block header %}
+        {% endblock header %}
+
+      </ul>
+      <!--  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+    </div>
+  </nav>
+
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5 my-0" role="alert">
+    <strong> {{ message }} </strong>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  {% endfor %}
+  {% endif %}
+
+
+  {% block body %}
+  {% endblock body %}
+  <div class="footer">
+    <div class="card-footer text-muted text-center" style="margin-top:20px;">
+      {% block footer %}
+      {% endblock footer %}
+
+      <p>By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content
+        Policies. All trademarks are properties of their respective owners© Copyright 2021 created by Parven Sharma -
+        All Rights Reserved</p>
+      <!--  <a href="#" class="fa fa-facebook px-2"></a>
+      <a href="#" class="fa fa-twitter px-2"></a>
+
+      <a href="#" class="fa fa-linkedin px-2"></a>
+      <a href="#" class="fa fa-youtube px-2"></a>
+      <a href="#" class="fa fa-instagram px-2"></a>
+    </div </div> -->
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      
+
+
+      {% block js %}
+
+
+      {% endblock js %}
+</body>
+
+</html>

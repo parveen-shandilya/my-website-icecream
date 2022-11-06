@@ -1,0 +1,14 @@
+/* resposiveness*************************8 */
+
+@media(min-device-width:992px) {}
+
+@media(min-device-width:768px) and (max-width:991px) {}
+
+@media(min-device-width:575px) and (max-width:767px) {}
+
+@media(min-device-width:434px) and (max-width: 670px) {}
+
+
+/****************/
+
+@media(max-width:479px) {}

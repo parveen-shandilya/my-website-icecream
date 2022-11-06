@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block title %} Home body
+
+{% endblock title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username=={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username=={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+{% block body %}
+
+
+<div class="container-fluid px-0 my-4 ">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://source.unsplash.com/1600x600/?strawberry icecream" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block ">
+          <h2 class="text-center">Welcome To My Icecream Store</h2>
+          {% for username in username %}
+          {{username}}
+          {% endfor %}
+
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1600x600/?Caramel Praline icecream" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="text-center">Welcome To My Icecream Store</h2>
+          <p>We Serve love with icecream</p>
+
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1600x600/?chocolate icecream" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="text-center">Welcome To My Icecream Store</h2>
+          <p>Parveen world famous icecream</p>
+
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1600x600/?Cookies icecream" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="text-center">Welcome To My Icecream Store</h2>
+          <p>Have a Nice Day With icecream</p>
+
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1600x600/?Rose icecream" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="text-center">Welcome To My Icecream Store</h2>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="container">
+  <div class="text-center">
+    <h1 my-2>Select from our range of icecream </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream1.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">A classic birthday ice cream cake recipe with three layers of ice cream sandwiched
+            between fluffy vanilla cake.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecram2.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Combine the heavy cream, milk, sugar and vanilla in a large bowl, and whisk until the
+            sugar is dissolved.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecram3.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Chocolate ganache is a 2 ingredient recipe whose uses are virtually and darker than milk
+            chocolate and white chocolate.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream4.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text"> Cookies and Cream Ice Cream Recipe. Whisk together the cream, milk, sugar, salt, and
+            vanilla. This is very delicious.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream5.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Clay ice cream cups are used serve and contain the sweet which is made of ice creams. We
+            the manufacturer of ice cream.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream6.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Ice cream stick is made of natural wood. They are of very high quality and the surface of
+            ice cream stick is smooth.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream7.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Chocolate ice cream is ice cream with natural or artificial chocolate flavoring. This
+            process is a little bit longer. </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream8.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry
+            flavoring. nd sugar used to make ice cream.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img src="/static/images/icecream9.jpg" class="d-block w-100" alt="...">
+        <div class="card-body">
+          <p class="card-text">This rose ice cream is a delicious treat that's delicately flavored with rose water and
+            vanilla. This is most delicious icecream.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock body %}
+
+{% block footer %}
+<p><a href="/?username={{username}}">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/services?username={{username}}">Services</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/about?username={{username}}">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/contact?username={{username}}">Contact Us</a>&nbsp;&nbsp;|
+</p>
+
+
+{% endblock footer %}

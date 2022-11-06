@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block title %} Collection
+
+{% endblock title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username=={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username=={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+
+{% block body %}
+<script>
+  function calculatePrice() {
+    var icecreamCheckBox = document.getElementsByName('icecreamitem');
+    var calculatedPrice = "";
+    var orderedIcecream = "";
+    const price = new Array();
+    const icreamIds = new Array();
+    const IcremNames = new Array(); 
+    var currentUser = (window.location.href).split("==")[1];
+    for (var i = 0; i < icecreamCheckBox.length; i++) {
+      if (icecreamCheckBox[i].checked) {
+        orderedIcecream += icecreamCheckBox[i].value + "\n";
+        var icecream = icecreamCheckBox[i].value;
+        price.push(icecream.split(",")[1]);
+        icreamIds.push(icecream.split(",")[2]);
+        IcremNames.push(icecream.split(",")[0]);
+
+
+      }
+    }
+    var totalPrice = 0;
+    for (var i = 0; i < price.length; i++) {
+      totalPrice = Number(totalPrice) + Number(price[i]);
+    }
+
+
+    document.getElementById("calculatedPriceValue").innerHTML = orderedIcecream;
+    document.getElementById("TotalPriceValue").innerHTML = "Total Cost Price : " + totalPrice;
+    
+    var confirmbutton = document.getElementById("confirmOrder");
+    var addCartButton = document.getElementById("addCartSelected");
+
+    if (confirmbutton.style.display === "none") {
+      confirmbutton.style.display = "block";
+      
+      document.getElementById("confirmOrder").href = "/customer?" +"icecream_id="+icreamIds+"&item="+IcremNames+"&username="+currentUser;
+      
+    }
+    else {
+      confirmbutton.style.display = "none";
+    }
+
+    if(addCartButton.style.display ==="none"){
+
+      addCartButton.style.display = "block";
+      document.getElementById("addCartSelected").href = "/addcart?" +"icecream_id="+icreamIds+"&item="+IcremNames+"&username="+currentUser;
+      
+    }
+    else {
+      addCartButton.style.display = "none";
+    }
+
+
+
+    
+  }
+
+
+
+</Script>
+<style>
+  @media(min-device-width:434px) and (max-width: 670px) {
+    .col-3 {
+
+      height: auto;
+      margin-left: 40px;
+      padding-top: 100px;
+    }
+
+    .btn {
+      padding-left: 20px;
+    }
+
+    #pg {
+      height: 50px;
+      width: 50px;
+    }
+
+    #pgp {
+      padding-top: 40px;
+    }
+
+    .footer {
+      padding-top: 100px;
+    }
+
+
+
+  }
+
+
+  @media(min-device-width:992px) {}
+
+  @media(min-device-width:768px) and (max-width:991px) {}
+
+  @media(min-device-width:575px) and (max-width:767px) {}
+
+
+
+
+
+
+  @media(max-width:479px) {}
+</style>
+
+
+
+
+
+<div class="container">
+  <img class="d-block w-100 " src="/static/images/icecram2.jpg" style="height:400px;">
+</div>
+
+
+
+<div class="container text-center" style="padding-top:40px;">
+  <h2>Collection </h2>
+
+  <p>Explore the list of the top delicious Iceream from our collection</p>
+</div>
+<div class="container">
+  <a type="submit" onclick="calculatePrice()" class="btn btn-success"><i class="fa fa-shopping-cart"
+      aria-hidden="true"></i>Order Selected Items</a>
+
+
+  <a type="submit" href="/addcart?icecream_id={{icecream.id}}&username={{username}}" style="margin-top:20px;display:none;width:20%;" class="btn btn-warning" id="addCartSelected"><i
+      class="fa fa-shopping-cart" aria-hidden="true"></i>Add to Cart Items</a>
+  <br>
+  <a type="submit" href="/customer?username={{username}}" style="margin-top:20px;display:none;width:20%;" class="btn btn-primary" id="confirmOrder"> <i
+      class="fa fa-shopping-cart" aria-hidden="true"></i>Confirm Order</a>
+  <p id="calculatedPriceValue" style="white-space:pre-line;"></p>
+  <p id="TotalPriceValue" style="white-space:pre-line;"></p>
+
+
+</div>
+
+<div class="container">
+  <div class="row" style="padding-top:15px;">
+
+    {% for icecream in icecreams %}
+
+
+    <div class="col-3">
+      <img id="img" class="card-img-top" src="{{icecream.icecream_img.url}}"
+        style="height : 50%;width : 60%;padding-top:20px" alt="Card image cap">
+      <input type="checkbox" value="{{icecream.icecream}},{{icecream.price}},{{icecream.id}}" name="icecreamitem" id="{{icecream.id}}">
+      <p id="pg"><a href="/customer?item={{icecream.icecream}}">{{icecream.icecream}}</a></p>
+      <p id="pgp">Price {{icecream.price}}Rs</p>
+
+      <!-- <button  onclick="location.href='/customer?item={{icecream.icecream}}&username={{username}}';" class="btn btn-success">order now</button>-->
+      <a type="submit" href="/customer?icecream_id={{icecream.id}}&item={{icecream.icecream}}&username={{username}}"
+        class="btn btn-success"><i class="fa fa-shopping-cart" style="padding-top: 10px;" aria-hidden="true"></i>Order
+        Now</a>
+      <br>
+      <a type="submit" style="margin-top:20px;margin: bottom 30px;margin: left 20px;"
+        href="/addcart?icecream_id={{icecream.id}}&username={{username}}" class="btn btn-primary"><i
+          class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 10px;"></i>Add to
+        Cart</a>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+{%endblock body%}
+{% block footer %}
+<p><a href="/?username={{username}}">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/services?username={{username}}">Services</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/about?username={{username}}">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/contact?username={{username}}">Contact Us</a>&nbsp;&nbsp;|
+</p>
+
+
+{% endblock footer %}

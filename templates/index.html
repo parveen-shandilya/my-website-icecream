@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#myModal").modal('show');
+    });
+  </script>
+  <title>
+    | Parveen Icecream</title>
+</head>
+
+<body>
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title ">
+            <h3 style="padding-left:200px;"> Log In </h3>
+            <h3 style="padding-left:150px;">Parveen icecream </h3>
+
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+
+          <form action="/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="User Name" Required>
+            </div>
+            <div class="form-group">
+              <input type="Password" class="form-control" name="password" placeholder="Password" Required>
+            </div>
+            <p>Already have a account?log in</p>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <a href="#" data-toggle="modal" data-target="#registermodal"> Create New Account </a>
+
+            <!-- Button trigger modal -->
+            <a href="#" style="padding-left:30px;" data-toggle="modal" data-target="#updateModalCenter">
+              Forget Password?
+            </a>
+          </form>
+
+
+
+
+          <div class="modal fade" id="registermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title ">
+                    <h3 style="padding-left:150px;"> Create Account </h3>
+
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="firstname" placeholder=" Name" Required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="lastname" placeholder="last Name" Required>
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="email" placeholder=" enter email" Required>
+                    </div>
+                    <div class="form-group">
+                      <input type="Password" class="form-control" name="password" placeholder=" Create Password"
+                        Required>
+                    </div>
+                    <div class="form-group">
+                      <input type="Password" class="form-control" name="confirmpassword" placeholder=" Confirm Password"
+                        Required>
+                    </div>
+
+                    <input type="radio" class="form-control" id="superuser" name="user" value="superuser"
+                      Required><label for="superuser">Superuser</label>
+                    <input type="radio" class="form-control" id="customer" name="user" value="customer" Required>
+                    <label for="superuser">Customer</label>
+
+                    <br>
+                    <button type="submit" class="btn btn-primary">create account</button>
+
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Updatepassword  model -->
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="updateModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create New Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/updatepassword" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" name="firstname" placeholder=" Name" Required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="lastname" placeholder="last Name" Required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" placeholder=" enter email" Required>
+            </div>
+            <div class="form-group">
+              <input type="Password" class="form-control" name="password" placeholder=" Create new Password" Required>
+            </div>
+            <div class="form-group">
+              <input type="Password" class="form-control" name="confirmpassword" placeholder=" Confirm new Password"
+                Required>
+            </div>
+
+
+
+
+            <br>
+            <button type="submit" class="btn btn-primary">Update Password</button>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+    <a class="navbar-brand" href="/admin">Parveen Icecream</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About us</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Icecream</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact us</a>
+        </li>
+        <form class="form-inline my-2 my-lg-0">
+          <div style="margin-left:550px;">
+            <a href="#" class="fa fa-facebook px-2"></a>
+            <a href="#" class="fa fa-twitter px-2"></a>
+
+            <a href="#" class="fa fa-linkedin px-2"></a>
+            <a href="#" class="fa fa-youtube px-2"></a>
+            <a href="#" class="fa fa-instagram px-2"></a>
+          </div>
+        </form>
+
+      </ul>
+      <!--  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+    </div>
+  </nav>
+
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5 my-0" role="alert">
+    <strong> {{ message }} </strong>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+
+
+  <div class="container-fluid px-0 my-4 ">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://source.unsplash.com/1600x600/?strawberry icecream" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block ">
+            <h2 class="text-center">Welcome To My Icecream Store</h2>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://source.unsplash.com/1600x600/?Caramel Praline icecream" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="text-center">Welcome To My Icecream Store</h2>
+            <p>We Serve lovev with icecream</p>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://source.unsplash.com/1600x600/?chocolate icecream" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="text-center">Welcome To My Icecream Store</h2>
+            <p>Parveen world famous icecream</p>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://source.unsplash.com/1600x600/?Cookies icecream" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="text-center">Welcome To My Icecream Store</h2>
+            <p>Have a Nice Day With icecream</p>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://source.unsplash.com/1600x600/?Rose icecream" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="text-center">Welcome To My Icecream Store</h2>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container">
+    <div class="text-center">
+      <h1 my-2>Select from our range of icecream </h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream1.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">A classic birthday ice cream cake recipe with three layers of ice cream sandwiched
+              between fluffy vanilla cake.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecram2.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Combine the heavy cream, milk, sugar and vanilla in a large bowl, and whisk until the
+              sugar is dissolved.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecram3.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Chocolate ganache is a 2 ingredient recipe whose uses are virtually and darker than
+              milk chocolate and white chocolate.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream4.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text"> Cookies and Cream Ice Cream Recipe. Whisk together the cream, milk, sugar, salt, and
+              vanilla. This is very delicious.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream5.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Clay ice cream cups are used serve and contain the sweet which is made of ice creams.
+              We the manufacturer of ice cream.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream6.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Ice cream stick is made of natural wood. They are of very high quality and the surface
+              of ice cream stick is smooth.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream7.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Chocolate ice cream is ice cream with natural or artificial chocolate flavoring. This
+              process is a little bit longer. </p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream8.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry
+              flavoring. nd sugar used to make ice cream.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="/static/images/icecream9.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <p class="card-text">This rose ice cream is a delicious treat that's delicately flavored with rose water and
+              vanilla. This is most delicious icecream.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

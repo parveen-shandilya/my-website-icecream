@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %} Orders body
+
+{% endblock title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username=={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username=={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+{% block body %}
+
+
+<div class="container" style="padding-top:100px;">
+  <h1 id="topheader" style="font-size:bold;">My Orders</h1>
+
+  <br>
+  <br>
+  <div class="container">
+    <div class="row" style="padding-top:15px;">
+
+
+      {% for order in my_orders %}
+
+
+      <div class="col">
+        <table id="myTable">
+          <tr style="background-color: {% cycle 'lightblue' 'lightgreen' 'yellow' 'coral' 'grey' %}">
+            <th>Order Name:</th>
+            <td >
+              
+              <a data-toggle="popover" title="Ordered Items" data-content="Your Ordered Items -  {{order.order_item}} . ">{{order.order_item}}</a>
+              
+              
+              </td>
+          </tr>
+          <tr style="background-color:{% cycle 'lightblue' 'lightgreen' 'yellow' 'coral' 'grey' %}">
+            <th>Order id:</th>
+            <td >
+              <a data-toggle="popover" title="Order Id" data-content="Your Order ID is {{order.order_id}} . ">{{order.order_id}}</a>
+              
+              
+              </td>
+          </tr>
+          <tr style="background-color:{% cycle 'lightblue' 'lightgreen' 'yellow' 'coral' 'grey' %}">
+            <th>Name:</th>
+            <td >
+              <a data-toggle="popover" title="Customer Name" data-content=" Customer Name is {{order.name}} . ">{{order.name}}</a>
+              
+              
+              </td>
+            
+          </tr>
+          <tr style="background-color:{% cycle 'lightblue' 'lightgreen' 'yellow' 'coral' 'grey' %}">
+            <th>Mobile no.</th>
+            <td > 
+              
+              <a data-toggle="popover" title="Contact Number" data-content=" Contact Number of the customer is {{order.mobile_no}} . ">{{order.mobile_no}}</a>
+  
+            </td>
+          </tr>
+          <tr style="background-color:{% cycle 'lightblue' 'lightgreen' 'yellow' 'coral' 'grey' %}">
+            <th>Addres:</th>
+            <td > 
+              <a data-toggle="popover" title="Address" data-content=" Customer Address is {{order.address}} . ">{{order.address}}</a>
+              
+              
+              {{order.address}}</td>
+          </tr>
+
+        </table>
+        <br>
+        <a class="btn btn-primary" href="/tracking?username={{username}}"> Track Order </a>
+        <!-- Button trigger modal -->
+        <a type="button" style="margin-top: 2px;" href="/cancelorder?username={{username}}&order_id={{order.order_id}}"
+          class="btn btn-danger">
+          Cancel order
+        </a>
+       <!-- Button to invoke the modal -->
+<!--<button type="button" id="vieworderdetails" class="btn btn-warning" data-toggle="modal" data-target="#OrderDeatilsModel">
+  View Order Details
+</button> -->
+
+
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+
+
+</div>
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
+
+
+{% endblock body %}
+{% block footer %}
+<p><a href="/?username={{username}}">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/services?username={{username}}">Services</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/about?username={{username}}">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/contact?username={{username}}">Contact Us</a>&nbsp;&nbsp;|
+</p>
+
+
+{% endblock footer %}

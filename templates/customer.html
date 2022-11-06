@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %} Customer
+
+{% endblock title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+
+{% block body %}
+<div class="container px-0">
+
+  <img src="https://source.unsplash.com/1600x600/?payment" class="d-block w-100 mx-0" alt="...">
+</div>
+
+
+<div class="container">
+  <h2 class="text-center"> Order Now</h2>
+  <div class="row">
+    <div class="col">
+      <form method="post" action="/order">
+        {% csrf_token %}
+        <input type="hidden" class="form-control" id="item_id" name="icecream_id" value={{icecream_id}}>
+        <input type="hidden" class="form-control" id="user" name="user" value={{username}}>
+
+
+        <div class="form-group">
+          <label for="item">order_item</label>
+          <input type="text" class="form-control" id="order_item" name="order_item" value="{{item}}">
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="enter your name">
+        </div>
+        <div class="form-group">
+          <label for="address"> address</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="enter address">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input type="phone" class="form-control" id="phone" name="phone" placeholder="phone number">
+        </div>
+        <div class="form-group">
+          <label for="pin">Pincode</label>
+          <input type="text" class="form-control" id="pin" name="pin" placeholder="enter your Pincode">
+        </div>
+        <div class="form-group">
+          <label for="distt">Distt.</label>
+          <input type="text" class="form-control" id="distt" name="distt" placeholder="enter your district">
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" name="state" placeholder="enter your State">
+        </div>
+
+
+
+        <button type="submit" href="#" class="btn btn-primary">Cash
+          On Delivery</button>
+        <a type="submit" href="/addcart?icecream_id={{icecream_id}}&username={{username}}" class="btn btn-secondary"><i
+            class="fa fa-shopping-cart" aria-hidden="true"></i>Add to Cart</a>
+
+
+      </form>
+
+    </div>
+
+
+
+
+    {% endblock body %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block Title %}
+Customer Profile
+{% endblock Title %}
+{% block homeblock %}
+<a class="nav-link" href="/home?username=={{username}}">Home <span class="sr-only">(current)</span></a>
+{% endblock homeblock %}
+
+{% block aboutblock %}
+<a class="nav-link" href="/about?username=={{username}}">About us</a>
+{% endblock aboutblock %}
+
+{% block contactblock %}
+<a class="nav-link" href="/contact?username=={{username}}">Contact us</a>
+
+{% endblock contactblock %}
+
+
+
+
+{% block cartlink %}
+<a class="dropdown-item" href="/Cart?username=={{username}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My
+  Cart({{count}})</a>
+
+{% endblock cartlink %}
+
+{% block serviceblock %}
+<a class="dropdown-item" href="/services?username=={{username}}">Icecream</a>
+
+{% endblock serviceblock %}
+{% block header %}
+<form class="form-inline my-2 my-lg-0">
+  <div style="margin-left:550px;">
+    <a href="#" class="fa fa-facebook px-2"></a>
+    <a href="#" class="fa fa-twitter px-2"></a>
+
+    <a href="#" class="fa fa-linkedin px-2"></a>
+    <a href="#" class="fa fa-youtube px-2"></a>
+    <a href="#" class="fa fa-instagram px-2"></a>
+  </div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class='fas fa-user px-4' style='font-size:24px'></i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/Profile?username={{username}}">Profile</a>
+      <a class="dropdown-item" href="/logout?username={{username}}">Logout</a>
+      <a class="dropdown-item" href="/orders?username={{username}}">My order</a>
+      <a class="dropdown-item" href="/Cart?username={{username}}">MYCart ({{count}})</a>
+
+
+      <a class="dropdown-item" href="/tracking?username={{username}}">Track Order</a>
+
+
+    </div>
+  </li>
+
+
+
+
+</form>
+{% endblock header %}
+
+{% block body %}
+<div class="container " style="padding-top:100px;padding-left:38%;">
+
+  <img src="/static/images/profile-icon-png-893.png" style="width:100px;" class="d-block mx-0" alt="...">
+  <br></br>
+</div>
+<div class="container">
+  <div class="profile" style="padding-top:30px;padding-left:38%;">
+
+    {% for cust in customers %}
+    <h4>Name : {{cust.firstname}} {{cust.lastname}}</h4>
+    <h4>Email : {{cust.username}}</h4>
+    <h4>Username : {{cust.firstname}}</h4>
+
+
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock body %}
+{% block footer %}
+<p><a href="/?username={{username}}">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/services?username={{username}}">Services</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/about?username={{username}}">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <a href="/contact?username={{username}}">Contact Us</a>&nbsp;&nbsp;|
+</p>
+
+
+{% endblock footer %}
